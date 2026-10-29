@@ -1,23 +1,28 @@
 # Results Radar
 
-A static Indian-stock earnings tracker interface. The holdings list is saved in local browser storage.
+Responsive React app for keeping an Indian-equity watchlist. The watchlist saves in browser storage. Market data fields deliberately show “Not available” until a verified data provider is configured.
 
 ## Run locally
 
-Open `index.html` in a browser. No build step or server is required.
+1. Install Node.js 20 or newer.
+2. Run `npm install`.
+3. Run `npm run dev` and open the local URL Vite prints.
 
-## Publish with GitHub Pages
+Create a production bundle with `npm run build`; preview it with `npm run preview`.
 
-1. Create a GitHub repository and add `index.html`, `styles.css`, `app.js`, and this README at the repository root.
-2. Push the files to the `main` branch.
-3. In the repository, open **Settings → Pages**.
-4. Under **Build and deployment**, select **Deploy from a branch**, choose `main` and `/(root)`, then save.
-5. Open the Pages URL shown in that settings screen. It will be available from any device with internet access.
+## GitHub Pages
 
-This site uses relative asset paths and does not need a build pipeline to publish.
+The repository includes a GitHub Actions workflow that builds the React app and deploys `dist` to Pages on every push to `main`.
+
+1. In the repository, open **Settings → Pages**.
+2. Set **Build and deployment → Source** to **GitHub Actions**.
+3. Open **Actions** and wait for **Deploy Results Radar** to finish successfully.
+4. The project URL will be `https://ss-bfsl.github.io/Results-Radar/`.
+
+Vite is configured with the repository subpath. GitHub Pages does not run a persistent server; this workflow only builds and publishes the frontend.
 
 ## Data status
 
-The current version does not fetch earnings dates, filings, financial results, consensus estimates, news, or prices. Those fields show “Not available”; no sample market figures are included. Stock search currently uses a small built-in list of NSE companies and is not a complete exchange directory. Holdings remain local to the browser and do not sync across devices.
+This project currently does not fetch earnings dates, exchange filings, financial results, consensus, news, sentiment, or share prices. It has a small built-in list of common NSE symbols for watchlist search, not a full NSE/BSE directory. It does not include cross-device sync, scheduled market-data refresh, or alert delivery. No sample market metrics are shown.
 
-To enable automatic refreshes, connect a backend or scheduled GitHub Actions job to a permitted data provider. GitHub Pages itself serves static files and cannot run a background process. NSE provides public filing/calendar pages, while exchange-grade corporate data feeds are separately licensed. A reliable integration for prices, consensus, historical results, and news needs a provider that explicitly permits those uses; do not put provider secrets in the Pages frontend.
+Official references: [NSE announcements](https://www.nseindia.com/companies-listing/corporate-filings-announcements), [NSE financial results](https://www.nseindia.com/companies-listing/corporate-filings-financial-results), [NSE event calendar](https://www.nseindia.com/companies-listing/corporate-filings-event-calendar?days=7days). A live integration needs a permitted provider for structured exchange and market data; never place provider secrets in this public frontend.
